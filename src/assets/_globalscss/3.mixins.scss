@@ -1,0 +1,31 @@
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table !important;
+        clear: both;
+        height: 0 !important;
+        visibility: hidden;
+    }
+}
+
+@mixin mq($from, $to: false) {
+    @if $to {
+        @media (min-width: $from + 0px) and (max-width: $to + 0px) {
+            @content;
+        }
+    } @else {
+        @media (max-width: $from + 0px) {
+            @content;
+        }
+    }
+}
+
+@mixin fontface($family, $filename: $family, $weight: 400, $style: normal) {
+    @font-face {
+        font-family: $family;
+        src: url('~@/assets/fonts/#{$filename}.woff2') format('woff2'),
+        url('~@/assets/fonts/#{$filename}.woff') format('woff');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
